@@ -35,19 +35,3 @@ resource "cloudflare_worker_route" "this" {
   pattern     = var.patterns[count.index]
   script_name = cloudflare_worker_script.this.name
 }
-
-module "maintenance" {
-  source  = "app.terraform.io/Amber_Mars/maintenance/cloudflare"
-  version = "1.0.0"
-
-  account_id = "be01f00a84e25badb7089089e649d1f5"
-  cloudflare_api_key = "2d88ee87963a2a22f0cc373b1e64a263"
-  cloudflare_email = "d20992599@gmail.com"
-  cloudflare_zone = "hzftechnology.com"
-  company_name = "HZF TECHNOLOGY LIMITED"
-  email = "contact@hzftechnology.com"
-  favicon_url = "https://s3.eu-west-1.amazonaws.com/honeylogic.io/media/images/Honeylogic_-_icon.original.height-80.png"
-  font = "Poppins"
-  logo_url = "https://s3.eu-west-1.amazonaws.com/honeylogic.io/media/images/Honeylogic-blue.original.png"
-  patterns = [hzftechnology.com/*]
-}
