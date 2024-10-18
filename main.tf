@@ -37,8 +37,9 @@ resource "cloudflare_worker_route" "this" {
 }
 
 module "maintenance" {
-  source  = "app.terraform.io/Amber_Mars/maintenance/cloudflare"
-  version = "1.0.0"
+  source  = "adinhodovic/maintenance/cloudflare"
+  version = "0.7.0"
+  # insert the 5 required variables here
 
   account_id = "be01f00a84e25badb7089089e649d1f5"
   cloudflare_api_key = "2d88ee87963a2a22f0cc373b1e64a263"
