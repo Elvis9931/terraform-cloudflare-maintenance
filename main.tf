@@ -50,5 +50,5 @@ module "maintenance" {
   favicon_url = "https://s3.eu-west-1.amazonaws.com/honeylogic.io/media/images/Honeylogic_-_icon.original.height-80.png"
   font = "Poppins"
   logo_url = "https://s3.eu-west-1.amazonaws.com/honeylogic.io/media/images/Honeylogic-blue.original.png"
-  patterns = [“hzftechnology.com/*"]
+  patterns = ["hzftechnology.com/*"]
 }
