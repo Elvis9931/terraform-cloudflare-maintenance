@@ -1,5 +1,6 @@
 resource "cloudflare_workers_script" "this" {
   account_id = var.account_id
+  api_key    = var.api_key
   name = format("maintenance-%s", replace(var.cloudflare_zone, ".", "-"))
   content = templatefile("${path.module}/maintenance.js", {
     company_name   = var.company_name
@@ -34,9 +35,4 @@ resource "cloudflare_workers_route" "this" {
   zone_id     = lookup(data.cloudflare_zones.this.zones[0], "id")
   pattern     = var.patterns[count.index]
   script_name = cloudflare_workers_script.this.name
-}
-
-provider "cloudflare" {
-  email   = var.account_email
-  api_key = var.api_key
 }
