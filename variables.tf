@@ -8,11 +8,6 @@ variable "api_key" {
   description = "Cloudflare workers api_key"
 }
 
-variable "account_email" {
-  type        = string
-  description = "Cloudflare account email"
-}
-
 variable "cloudflare_zone" {
   type = string
 }
