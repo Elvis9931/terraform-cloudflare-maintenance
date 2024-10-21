@@ -1,7 +1,6 @@
 variable "account_id" {
   type        = string
   description = "Cloudflare account id"
-  default     = "be01f00a84e25badb7089089e649d1f5"
 }
 
 variable "cloudflare_zone" {
