@@ -3,10 +3,7 @@ resource "cloudflare_workers_script" "this" {
   name = format("maintenance-%s", replace(var.cloudflare_zone, ".", "-"))
   content = templatefile("${path.module}/maintenance.js", {
     company_name   = var.company_name
-    logo_url       = var.logo_urlprovider "cloudflare" {
-  email   = "d20992599@gmail.com"
-  api_key = "4d8dfa89d03b4b4d3ef622479c50f29ca3faf"
-}
+    logo_url       = var.logo_url
     favicon_url    = var.favicon_url
     font           = var.font
     email          = var.email
