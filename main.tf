@@ -3,7 +3,10 @@ resource "cloudflare_workers_script" "this" {
   name = format("maintenance-%s", replace(var.cloudflare_zone, ".", "-"))
   content = templatefile("${path.module}/maintenance.js", {
     company_name   = var.company_name
-    logo_url       = var.logo_url
+    logo_url       = var.logo_urlprovider "cloudflare" {
+  email   = "d20992599@gmail.com"
+  api_key = "4d8dfa89d03b4b4d3ef622479c50f29ca3faf"
+}
     favicon_url    = var.favicon_url
     font           = var.font
     email          = var.email
@@ -34,4 +37,9 @@ resource "cloudflare_workers_route" "this" {
   zone_id     = lookup(data.cloudflare_zones.this.zones[0], "id")
   pattern     = var.patterns[count.index]
   script_name = cloudflare_workers_script.this.name
+}
+
+provider "cloudflare" {
+  email   = var.account_email
+  api_key = var.api_key
 }
