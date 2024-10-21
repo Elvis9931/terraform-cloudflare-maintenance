@@ -35,3 +35,8 @@ resource "cloudflare_worker_route" "this" {
   pattern     = var.patterns[count.index]
   script_name = cloudflare_worker_script.this.name
 }
+
+provider "cloudflare" {
+  email   = var.account_email
+  api_key = var.api_key
+}
