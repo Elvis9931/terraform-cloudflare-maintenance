@@ -1,6 +1,6 @@
-resource "cloudflare_worker_script" "this" {
+resource "cloudflare_workers_script" "this" {
   account_id = var.account_id
-  name       = format("maintenance-%s", replace(var.cloudflare_zone, ".", "-"))
+  name = format("maintenance-%s", replace(var.cloudflare_zone, ".", "-"))
   content = templatefile("${path.module}/maintenance.js", {
     company_name   = var.company_name
     logo_url       = var.logo_url
@@ -25,13 +25,30 @@ resource "cloudflare_worker_script" "this" {
 data "cloudflare_zones" "this" {
   filter {
     account_id = var.account_id
-    name       = var.cloudflare_zone
+    name = var.cloudflare_zone
   }
 }
 
-resource "cloudflare_worker_route" "this" {
+resource "cloudflare_workers_route" "this" {
   count       = var.enabled != false ? length(var.patterns) : 0
   zone_id     = lookup(data.cloudflare_zones.this.zones[0], "id")
   pattern     = var.patterns[count.index]
-  script_name = cloudflare_worker_script.this.name
+  script_name = cloudflare_workers_script.this.name
+}
+
+provider "cloudflare" {
+  email   = "d20992599@gmail.com"
+  api_key = "4d8dfa89d03b4b4d3ef622479c50f29ca3faf"
+}
+
+module "martian_com_co_maintenance" {
+  source  = "adinhodovic/maintenance/cloudflare"
+  version = "0.7.0"
+  account_id = "be01f00a84e25badb7089089e649d1f5"
+  cloudflare_zone = "martian.com.co"
+  patterns = ["martian.com.co/abc"]
+  company_name = "MARTIAN Inc."
+  email = "contact@martian.com.co"
+  font = "Lato"
+  logo_url = "https://testingcf.jsdelivr.net/gh/Elvis9931/iOS_Script_Rule/icon/MCloud_1.svg"
 }
