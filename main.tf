@@ -37,6 +37,6 @@ resource "cloudflare_workers_route" "this" {
 }
 
 provider "cloudflare" {
-  account_email  = var.account_email
+  email  = var.account_email
   api_key        = var.api_key
 }
