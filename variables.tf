@@ -3,6 +3,16 @@ variable "account_id" {
   description = "Cloudflare account id"
 }
 
+variable "api_key" {
+  type        = string
+  description = "Cloudflare workers api_key"
+}
+
+variable "account_email" {
+  type        = string
+  description = "Cloudflare account email"
+}
+
 variable "cloudflare_zone" {
   type = string
 }
